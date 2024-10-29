@@ -1,5 +1,6 @@
 <script setup>
 import ProductList from './components/ProductList.vue';
+import ShoppingCart from './components/ShoppingCart.vue';
 </script>
 
 <template>
@@ -18,7 +19,7 @@ import ProductList from './components/ProductList.vue';
     <v-col cols="12" lg="3">
       <v-container>
         <v-card class="mt-5 mr-2">
-          carrinho
+          <ShoppingCart/>
         </v-card>
       </v-container>
     </v-col>
