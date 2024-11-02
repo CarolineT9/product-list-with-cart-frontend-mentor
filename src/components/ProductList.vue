@@ -1,4 +1,4 @@
-.<template>
+<template>
     <v-row>
         <v-col v-for="dessert in desserts" :key="dessert.name" cols="12" lg="4">
             <ProductCard :dessert="dessert" />

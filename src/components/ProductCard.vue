@@ -6,18 +6,7 @@
         <v-icon class="mr-2"><img src="../assets/images/icon-add-to-cart.svg" alt=""></v-icon>
         <span class="btn-text">Add to Cart</span>
       </v-btn>
-      <v-btn v-if="showQuantityButtons" class="btn add-card" variant="outlined" min-width="180" height="50">
-        <tr>
-          <td>
-            <v-btn flat class="qnty-btn" size="x-small" @click="decrementQuantity()">
-              <v-icon><img src="../assets/images/icon-decrement-quantity.svg" alt=""></v-icon>
-            </v-btn>
-            {{ quantity }}
-            <v-btn flat class="qnty-btn" size="x-small" @click="incrementQuantity()"><v-icon class="mr-2"><img
-                  src="../assets/images/icon-increment-quantity.svg" alt=""></v-icon></v-btn>
-          </td>
-        </tr>
-      </v-btn>
+      <ActionButtons  v-if="showQuantityButtons" @add-product="addProduct" @decrement-quantity="decrementQuantity"/>
     </v-card-action>
     <v-card-text class="card-content">
       <v-card-subtitle class="subtitle">{{ dessert.category }}</v-card-subtitle>
@@ -29,7 +18,8 @@
 
 <script setup>
 import { computed, onMounted, onUnmounted, ref } from 'vue';
-
+import { useCartStore } from '../stores/cart';
+import ActionButtons from './buttons/ActionButtons.vue';
 // Define props
 const props = defineProps({
   dessert: {
@@ -63,23 +53,23 @@ onUnmounted(() => {
   window.removeEventListener('resize', updateImageSrc);
 });
 
-const quantity = ref(0);
+
 const showQuantityButtons = ref(false);
 
-const addProduct = () => {
-  showQuantityButtons.value = true; // Show quantity buttons after clicking "Add to Cart"
-  quantity.value = 1; // Increment the quantity
+
+const addProduct = (d) => {
+ 
+   const cartStore = useCartStore();
+   cartStore.addProduct(props.dessert)
+   showQuantityButtons.value = true
 };
 
-const incrementQuantity = () => {
-  quantity.value++
-}
-const decrementQuantity = () => {
+const quantity = ref('')
 
-  if (quantity.value > 0) {
-    quantity.value--;
-  }
-
+const decrementQuantity = (d) =>{
+  const cartStore = useCartStore()
+  cartStore.decrement(props.dessert.name)
+  
 }
 
 </script>
@@ -105,9 +95,7 @@ const decrementQuantity = () => {
   background-color: transparent;
 }
 
-.add-card {
-  background-color: hsl(14, 86%, 42%);
-}
+
 
 .subtitle {
   color: hsl(12, 20%, 44%);
@@ -128,7 +116,5 @@ const decrementQuantity = () => {
   color: hsl(14, 65%, 9%);
   text-transform: capitalize;
 }
-.qnty-btn{
-background-color: hsl(14, 86%, 42%) ;
-}
+
 </style>
