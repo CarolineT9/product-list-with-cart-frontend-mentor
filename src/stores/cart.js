@@ -14,10 +14,11 @@ export const useCartStore = defineStore('cart', {
       })
       return count
     },
+    
     totalAmount: (state) => {
       let total = 0
       state.details.forEach(d => {
-       total += d.dissert.price * d.quantity
+       total += d.dessert.price * d.quantity
        
     })
     return total

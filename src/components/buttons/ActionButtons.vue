@@ -17,6 +17,7 @@
 
 import { useCartStore } from '../../stores/cart';
 
+
 const cartStore = useCartStore();
 const emit = defineEmits(['add-product', 'decrement-quantity'])
 
