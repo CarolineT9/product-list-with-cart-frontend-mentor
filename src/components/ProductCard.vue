@@ -1,12 +1,33 @@
 <template>
-  <v-card flat class="mx-auto card" color="surface-variant" max-width="340">
+  <v-card
+    flat
+    class="mx-auto card"
+    color="surface-variant"
+    max-width="340"
+    @mouseenter="showQuantityButtons = true"
+    @mouseleave="showQuantityButtons = false"
+  >
     <v-img height="250" :src="currentImage" />
     <v-card-action>
-      <v-btn v-if="!showQuantityButtons" class="btn" variant="outlined" min-width="180" height="50" @click="addProduct">
-        <v-icon class="mr-2"><img src="../assets/images/icon-add-to-cart.svg" alt=""></v-icon>
+      <v-btn
+        v-if="!showQuantityButtons"
+        class="btn"
+        variant="outlined"
+        min-width="180"
+        height="50"
+        @click="addProduct"
+      >
+        <v-icon class="mr-2">
+          <img src="../assets/images/icon-add-to-cart.svg" alt="" />
+        </v-icon>
         <span class="btn-text">Add to Cart</span>
       </v-btn>
-      <ActionButtons  v-if="showQuantityButtons" @add-product="addProduct" @decrement-quantity="decrementQuantity"/>
+      <ActionButtons
+        v-if="showQuantityButtons"
+        :quantity="quantity"
+        @add-product="addProduct"
+        @decrement-quantity="decrementQuantity"
+      />
     </v-card-action>
     <v-card-text class="card-content">
       <v-card-subtitle class="subtitle">{{ dessert.category }}</v-card-subtitle>
@@ -20,7 +41,7 @@
 import { computed, onMounted, onUnmounted, ref } from 'vue';
 import { useCartStore } from '../stores/cart';
 import ActionButtons from './buttons/ActionButtons.vue';
-// Define props
+
 const props = defineProps({
   dessert: {
     type: Object,
@@ -28,7 +49,9 @@ const props = defineProps({
   }
 });
 
-// Computed for the image based on screen size
+const cartStore = useCartStore();
+
+// Computed para a imagem com base no tamanho da tela
 const currentImage = computed(() => {
   if (window.matchMedia("(max-width: 600px)").matches) {
     return props.dessert.image.mobile;
@@ -39,7 +62,6 @@ const currentImage = computed(() => {
   }
 });
 
-// Update image on window resize
 function updateImageSrc() {
   currentImage.value = currentImage.value;
 }
@@ -53,25 +75,22 @@ onUnmounted(() => {
   window.removeEventListener('resize', updateImageSrc);
 });
 
-
 const showQuantityButtons = ref(false);
 
-
-const addProduct = (d) => {
- 
-   const cartStore = useCartStore();
-   cartStore.addProduct(props.dessert)
-   showQuantityButtons.value = true
+const addProduct = () => {
+  cartStore.addProduct(props.dessert);
+  showQuantityButtons.value = true;
 };
 
-const quantity = ref('')
+const decrementQuantity = () => {
+  cartStore.decrement(props.dessert.name);
+};
 
-const decrementQuantity = (d) =>{
-  const cartStore = useCartStore()
-  cartStore.decrement(props.dessert.name)
-  
-}
-
+// Computed para quantidade do produto no carrinho
+const quantity = computed(() => {
+  const product = cartStore.details.find(d => d.dessert.name === props.dessert.name);
+  return product ? product.quantity : 0;
+});
 </script>
 
 <style scoped>
@@ -95,8 +114,6 @@ const decrementQuantity = (d) =>{
   background-color: transparent;
 }
 
-
-
 .subtitle {
   color: hsl(12, 20%, 44%);
   font-weight: 400;
@@ -116,5 +133,4 @@ const decrementQuantity = (d) =>{
   color: hsl(14, 65%, 9%);
   text-transform: capitalize;
 }
-
 </style>

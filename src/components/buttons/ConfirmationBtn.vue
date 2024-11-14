@@ -1,5 +1,5 @@
 <template>
-    <v-btn class="confirm-btn" :text="text" flat/>
+    <v-btn class="confirm-btn" :text="text" @click="$emit('click')" flat/>
 </template>
 
 <script setup>
@@ -8,7 +8,7 @@ const props=  defineProps({
         type: String,
         required: true
     }
-})
+});
 </script>
 
 <style scoped>

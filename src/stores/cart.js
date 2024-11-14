@@ -54,6 +54,10 @@ export const useCartStore = defineStore('cart', {
           this.deleteProduct(dessertName)
         }
       }
+    },
+    // action to clear the cart
+    clearCart() {
+      this.details = [];
     }
   }
 })

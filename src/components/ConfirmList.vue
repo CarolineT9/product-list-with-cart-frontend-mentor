@@ -1,6 +1,6 @@
 <template>
     <v-card flat v-for="(item, index) in details" :key="index">
-        <div class="d-flex  align-center ">
+        <div class="d-flex  align-center container px-4">
             <img class="my-3" :src="item.dessert.image.thumbnail" alt="dessert image" height="48">
             <div class="cart-description flex-column product-description ">
                 <div class="title">{{ item.dessert.name }}</div>
@@ -8,15 +8,11 @@
                     <span class="quantity">{{ item.quantity }} x</span>
                     <span class="price">$ {{ item.dessert.price.toFixed(2) }}</span>
                     <span class="amount">$ {{ subtotals[index].subtotal }}</span>
-                    <v-bnt class="btn-delete" @click="deleteProdutct(item.dessert.name)">
-                        <v-icon class="icon">
-                            <img src="../assets/images/icon-remove-item.svg" alt="Icon to remove an item from the cart">
-                        </v-icon>
-                    </v-bnt>
+                    
                 </div>
             </div>
         </div>
-        <v-divider></v-divider>
+        <v-divider class="bg-black"></v-divider>
     </v-card>
 
     <div v-if="details.length >= 1" class="order my-5 d-flex  justify-space-between">
@@ -34,9 +30,7 @@ const details = computed(() => {
     return cartStore.details
 
 });
-const deleteProdutct = (d) => {
-    cartStore.deleteProduct(d)
-}
+
 const subtotals = computed(() => {
     return details.value.map(item => ({
         name: item.dessert.name,
@@ -51,6 +45,11 @@ const totalCarCost = computed(() => {
 </script>
 
 <style scoped>
+.container{
+    background-color: rgb(244, 237, 235);
+    
+    
+}
 .cart-description {
     width: 40%;
 }
@@ -95,4 +94,5 @@ p{
 .total-cost{
     font-weight: 700;
 }
+
 </style>
