@@ -20,8 +20,7 @@ import ShoppingCartItem from './ShoppingCartItem.vue';
 
 const cartStore = useCartStore()
 const details = computed(() => {
-    return cartStore.details // Acessa diretamente os detalhes da store
-
+    return cartStore.details // Directly accesses the store details
 });
 const cartItems = computed(() => {
     return cartStore.cartItemsCount

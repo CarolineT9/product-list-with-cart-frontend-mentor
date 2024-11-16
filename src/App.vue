@@ -8,29 +8,33 @@ import { useCartStore } from './stores/cart';
 
 const cartStore = useCartStore();
 const details = computed(() => {
-    return cartStore.details // Acessa diretamente os detalhes da store
+    return cartStore.details 
 });
 
 const text = 'Confirm order';
-const isDialogActive = ref(false); // Controle de visibilidade do modal
+const isDialogActive = ref(false); 
 
 function openDialog() {
-  isDialogActive.value = true; // Abre o modal
+  isDialogActive.value = true; 
 }
 
 function closeDialog() {
-  isDialogActive.value = false; // Fecha o modal
+  isDialogActive.value = false; 
 }
 </script>
 
 <template>
   <v-row>
     <v-col cols="12" lg="8">
-      <main>
-        <v-container>
-          <v-card flat class=" card mt-5 ml-2">
-            <h1>Desserts</h1>
+      <main>      
+        <v-container>      
+          <v-card flat class=" card mt-5"> 
+            <div class="px-5 title-container" >
+              <h1 >Desserts</h1>  
+            </div>          
+                             
             <div class="d-flex">
+              
               <ProductList />
             </div>
           </v-card>
@@ -58,7 +62,7 @@ function closeDialog() {
     </v-col>
   </v-row>
 
-  <!-- Componente Dialog -->
+ 
   <Dialog :isActive="isDialogActive" @update:isActive="isDialogActive = $event"/>
 </template>
 
@@ -66,12 +70,27 @@ function closeDialog() {
 .card {
   background-color: transparent;
 }
-
+.title-container{
+  max-width: 100%;
+  text-align: center;
+  margin-bottom: 10px;
+  margin-left: -5rem;
+  
+}
 p {
   color: hsl(14, 65%, 9%);
 }
 
 span {
   font-weight: 700;
+}
+
+/* Para telas maiores que 420px */
+@media (min-width: 1280px) {
+  .title-container{
+    max-width: 100%;
+    text-align: start;
+    margin-left: 0;
+  }
 }
 </style>

@@ -5,28 +5,28 @@ export const useCartStore = defineStore('cart', {
   state: () => ({
     details: ('cartDetail', [])
   }),
-  getters:{
-    // calcular um valor a partir de um estadoo...
-    cartItemsCount: (state) =>{
+  getters: {
+    // Calculate a value based on a state...
+    cartItemsCount: (state) => {
       let count = 0
       state.details.forEach(detail => {
-          count += detail.quantity
+        count += detail.quantity
       })
       return count
     },
-    
+
     totalAmount: (state) => {
       let total = 0
       state.details.forEach(d => {
-       total += d.dessert.price * d.quantity
-       
-    })
-    return total
+        total += d.dessert.price * d.quantity
+
+      })
+      return total
 
     }
   },
   actions: {
-    //função para adicionar o produto ao carrinho de compra
+    //Function to add the product to the shopping car
     addProduct(dessert) {
       const detailFound = this.details.find(d => d.dessert.name === dessert.name)
       if (detailFound) {
@@ -38,24 +38,24 @@ export const useCartStore = defineStore('cart', {
         })
       }
     },
-    //função para deletar o produto do carrinho de compras
-    deleteProduct(dessertName){
-    
+    //Function to delete the product from the shopping cart
+    deleteProduct(dessertName) {
+
       const index = this.details.findIndex(d => d.dessert.name === dessertName)
       this.details.splice(index, 1)
     },
-    
-    //função que diminui quatidade de produto no carrinho
-    decrement(dessertName){
+
+    // Function to decrease the product quantity in the cart
+    decrement(dessertName) {
       const detailFound = this.details.find(d => d.dessert.name === dessertName)
-      if(detailFound){
+      if (detailFound) {
         detailFound.quantity -= 1
-        if(detailFound.quantity === 0){
+        if (detailFound.quantity === 0) {
           this.deleteProduct(dessertName)
         }
       }
     },
-    // action to clear the cart
+    // Action to clear the cart
     clearCart() {
       this.details = [];
     }

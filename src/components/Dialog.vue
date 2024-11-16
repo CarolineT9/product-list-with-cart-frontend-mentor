@@ -3,20 +3,20 @@ import ConfirmList from './ConfirmList.vue';
 import { useCartStore } from '../stores/cart';
 
 const props = defineProps({
-    isActive: {
-        type: Boolean,
-        required: true
-    }
+  isActive: {
+    type: Boolean,
+    required: true
+  }
 });
 
-const emit = defineEmits(['update:isActive']); // Usando update:isActive para sincronizar com o v-model
+const emit = defineEmits(['update:isActive']); //Using update:isActive to synchronize with v-model.
 
-const cartStore = useCartStore(); // Acessando a store do carrinho
+const cartStore = useCartStore(); // Accessing the cart store
 
-// Método para iniciar um novo pedido e fechar o modal
+// Method to start a new order and close the modal
 function startNewOrder() {
-  cartStore.clearCart(); // Limpa o carrinho
-  emit('update:isActive', false); // Fecha o modal ao emitir false
+  cartStore.clearCart();
+  emit('update:isActive', false); 
 }
 </script>
 
@@ -41,24 +41,24 @@ function startNewOrder() {
 
 <style scoped>
 .confirm-btn {
-    width: 100%;
-    height: 50px !important;
-    border-radius: 42px;
-    text-transform: capitalize;
-    font-weight: 500;
-    color: white;
-    background-color: hsl(14, 86%, 42%);
+  width: 100%;
+  height: 50px !important;
+  border-radius: 42px;
+  text-transform: capitalize;
+  font-weight: 500;
+  color: white;
+  background-color: hsl(14, 86%, 42%);
 }
 
 .confirm-btn:hover {
-    background-color: hsl(14, 88%, 29%);
+  background-color: hsl(14, 88%, 29%);
 }
 
 h1 {
-    color: hsl(14, 65%, 9%);
+  color: hsl(14, 65%, 9%);
 }
 
 p {
-    color: hsl(7, 20%, 60%);
+  color: hsl(7, 20%, 60%);
 }
 </style>
