@@ -1,29 +1,3 @@
-<template>
-    <v-card flat v-for="(item, index) in details" :key="index">
-        <div class="d-flex  align-center ">
-            <img class="my-3" :src="item.dessert.image.thumbnail" alt="dessert image" height="48">
-            <div class="cart-description flex-column product-description ">
-                <div class="title">{{ item.dessert.name }}</div>
-                <div class="d-flex justify-space-around ">
-                    <span class="quantity">{{ item.quantity }} x</span>
-                    <span class="price">$ {{ item.dessert.price.toFixed(2) }}</span>
-                    <span class="amount">$ {{ subtotals[index].subtotal }}</span>
-                    <v-bnt class="btn-delete" @click="deleteProdutct(item.dessert.name)">
-                        <v-icon class="icon">
-                            <img src="../assets/images/icon-remove-item.svg" alt="Icon to remove an item from the cart">
-                        </v-icon>
-                    </v-bnt>
-                </div>
-            </div>
-        </div>
-        <v-divider></v-divider>
-    </v-card>
-
-    <div v-if="details.length >= 1" class="order my-5 d-flex  justify-space-between">
-        <p>Order total</p>
-        <p class="total-cost">${{ totalCarCost.toFixed(2) }}</p>
-    </div>
-</template>
 
 <script setup>
 import { computed } from 'vue'
@@ -49,6 +23,33 @@ const totalCarCost = computed(() => {
 );
 
 </script>
+<template>
+    <v-card flat v-for="(item, index) in details" :key="index">
+        <div class="d-flex  align-center ">
+            <img class="my-3" :src="item.dessert.image.thumbnail" alt="dessert image" height="48">
+            <div class="cart-description flex-column product-description ">
+                <div class="title">{{ item.dessert.name }}</div>
+                <div class="d-flex justify-space-around ">
+                    <span class="quantity">{{ item.quantity }} x</span>
+                    <span class="price">$ {{ item.dessert.price.toFixed(2) }}</span>
+                    <span class="amount">$ {{ subtotals[index].subtotal }}</span>
+                    <v-bnt class="btn-delete" @click="deleteProdutct(item.dessert.name)">
+                        <v-icon class="icon">
+                            <img src="../../public/images/icon-remove-item.svg" alt="Icon to remove an item from the cart">
+                        </v-icon>
+                    </v-bnt>
+                </div>
+            </div>
+        </div>
+        <v-divider></v-divider>
+    </v-card>
+
+    <div v-if="details.length >= 1" class="order my-5 d-flex  justify-space-between">
+        <p>Order total</p>
+        <p class="total-cost">${{ totalCarCost.toFixed(2) }}</p>
+    </div>
+</template>
+
 
 <style scoped>
 .cart-description {

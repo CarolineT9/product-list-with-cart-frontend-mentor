@@ -1,7 +1,3 @@
-<template>
-    <v-btn class="confirm-btn" :text="text" @click="$emit('click')" flat/>
-</template>
-
 <script setup>
 const props=  defineProps({
     text:{
@@ -10,6 +6,9 @@ const props=  defineProps({
     }
 });
 </script>
+<template>
+    <v-btn class="confirm-btn" :text="text" @click="$emit('click')" flat/>
+</template>
 
 <style scoped>
 .confirm-btn{

@@ -1,18 +1,3 @@
-<template>
-    <v-container >
-        <div class="mb-5">
-            <h1>Your Cart({{ cartItems }})</h1>
-        </div>
-        <ShoppingCartItem />      
-        <v-card flat v-if="details.length === 0">
-            <div class="text-center my-3">
-                <img src="../assets/images/illustration-empty-cart.svg" alt="">
-                <p>Your added items will appear here.</p>
-            </div>
-        </v-card>
-    </v-container>
-</template>
-
 <script setup>
 import { computed } from 'vue';
 import { useCartStore } from '../stores/cart';
@@ -25,8 +10,24 @@ const details = computed(() => {
 const cartItems = computed(() => {
     return cartStore.cartItemsCount
 }
-)
+);
 </script>
+<template>
+    <v-container >
+        <div class="mb-5">
+            <h1>Your Cart({{ cartItems }})</h1>
+        </div>
+        <ShoppingCartItem />      
+        <v-card flat v-if="details.length === 0">
+            <div class="text-center my-3">
+                <img src="../../public/images/illustration-empty-cart.svg" alt="">
+                <p>Your added items will appear here.</p>
+            </div>
+        </v-card>
+    </v-container>
+</template>
+
+
 
 <style scoped>
 h1{

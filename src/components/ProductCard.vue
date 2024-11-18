@@ -1,25 +1,3 @@
-<template>
-  <v-card flat class="mx-auto card" color="surface-variant" max-width="340" @mouseenter="showQuantityButtons = true"
-    @mouseleave="showQuantityButtons = false">
-    <v-img height="250" :src="currentImage" />
-    <v-card-action>
-      <v-btn v-if="!showQuantityButtons" class="btn" variant="outlined" min-width="180" height="50" @click="addProduct">
-        <v-icon class="mr-2">
-          <img src="../assets/images/icon-add-to-cart.svg" alt="" />
-        </v-icon>
-        <span class="btn-text">Add to Cart</span>
-      </v-btn>
-      <ActionButtons v-if="showQuantityButtons" :quantity="quantity" @add-product="addProduct"
-        @decrement-quantity="decrementQuantity" />
-    </v-card-action>
-    <v-card-text class="card-content">
-      <v-card-subtitle class="subtitle">{{ dessert.category }}</v-card-subtitle>
-      <v-card-title class="title">{{ dessert.name }}</v-card-title>
-      <v-card-title class="price mt-n3">${{ dessert.price.toFixed(2) }}</v-card-title>
-    </v-card-text>
-  </v-card>
-</template>
-
 <script setup>
 import { computed, onMounted, onUnmounted, ref } from 'vue';
 import { useCartStore } from '../stores/cart';
@@ -75,6 +53,27 @@ const quantity = computed(() => {
   return product ? product.quantity : 0;
 });
 </script>
+<template>
+  <v-card flat class="mx-auto card" color="surface-variant" max-width="340" @mouseenter="showQuantityButtons = true"
+    @mouseleave="showQuantityButtons = false">
+    <v-img height="250" :src="currentImage" />
+    <v-card-action>
+      <v-btn v-if="!showQuantityButtons" class="btn" variant="outlined" min-width="180" height="50" @click="addProduct">
+        <v-icon class="mr-2">
+          <img src="../../public/images/icon-add-to-cart.svg" alt="" />
+        </v-icon>
+        <span class="btn-text">Add to Cart</span>
+      </v-btn>
+      <ActionButtons v-if="showQuantityButtons" :quantity="quantity" @add-product="addProduct"
+        @decrement-quantity="decrementQuantity" />
+    </v-card-action>
+    <v-card-text class="card-content">
+      <v-card-subtitle class="subtitle">{{ dessert.category }}</v-card-subtitle>
+      <v-card-title class="title">{{ dessert.name }}</v-card-title>
+      <v-card-title class="price mt-n3">${{ dessert.price.toFixed(2) }}</v-card-title>
+    </v-card-text>
+  </v-card>
+</template>
 
 <style scoped>
 .btn {
