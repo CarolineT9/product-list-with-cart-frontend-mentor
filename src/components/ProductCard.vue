@@ -60,7 +60,7 @@ const quantity = computed(() => {
     <v-card-action>
       <v-btn v-if="!showQuantityButtons" class="btn" variant="outlined" min-width="180" height="50" @click="addProduct">
         <v-icon class="mr-2">
-          <img src="../../public/images/icon-add-to-cart.svg" alt="" />
+          <img src="../../public/images/icon-add-to-cart.svg" alt="Add cart Icon" />
         </v-icon>
         <span class="btn-text">Add to Cart</span>
       </v-btn>

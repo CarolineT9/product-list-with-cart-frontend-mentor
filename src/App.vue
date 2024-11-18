@@ -52,7 +52,7 @@ function closeDialog() {
           </v-card>
           <div>
             <div class="d-flex justify-center mt-3">
-              <img src="../public/images/icon-carbon-neutral.svg" alt="">
+              <img src="../public/images/icon-carbon-neutral.svg" alt="Carbon Neutral Icon">
               <p>This is a <span>carbon-neutral</span> delivery</p>
             </div>
             <ConfirmationBtn v-if="details.length > 0" :text="text" class="mt-3" @click="openDialog"/>

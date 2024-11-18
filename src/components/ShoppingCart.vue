@@ -20,7 +20,7 @@ const cartItems = computed(() => {
         <ShoppingCartItem />      
         <v-card flat v-if="details.length === 0">
             <div class="text-center my-3">
-                <img src="../../public/images/illustration-empty-cart.svg" alt="">
+                <img src="../../public/images/illustration-empty-cart.svg" alt="Empty Cart">
                 <p>Your added items will appear here.</p>
             </div>
         </v-card>

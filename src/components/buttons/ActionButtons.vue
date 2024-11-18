@@ -14,7 +14,7 @@ const emit = defineEmits(["add-product", "decrement-quantity"]);
     <v-row >
       <v-col cols="4">
         <v-btn size="x-small" flat class="qnty-btn" @click="($event) => $emit('decrement-quantity')">
-          <img src="../../../public/images/icon-decrement-quantity.svg" alt="" />
+          <img src="../../../public/images/icon-decrement-quantity.svg" alt="Decrement Icon" />
         </v-btn>
       </v-col>
       <v-col cols="4" class=" d-flex justify-center align-center" >
@@ -22,7 +22,7 @@ const emit = defineEmits(["add-product", "decrement-quantity"]);
       </v-col> 
       <v-col cols="4">
         <v-btn size="x-small" flat class="qnty-btn " @click="($event) => $emit('add-product')">
-          <img src="../../../public/images/icon-increment-quantity.svg" alt="" />
+          <img src="../../../public/images/icon-increment-quantity.svg" alt="Increment Icon" />
         </v-btn>
       </v-col>
     </v-row>

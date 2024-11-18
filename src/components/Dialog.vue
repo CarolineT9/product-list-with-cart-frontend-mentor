@@ -25,7 +25,7 @@ function startNewOrder() {
     <v-card>
       <div class="px-4 py-4 serve">
         <v-card-text>
-          <img src="../../public/images/icon-order-confirmed.svg" alt="">
+          <img src="../../public/images/icon-order-confirmed.svg" alt="Order Confirmed Icon">
           <h1>Order Confirmed</h1>
           <p>We hope you enjoy your food!</p>
         </v-card-text>
